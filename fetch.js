@@ -12,12 +12,13 @@ const fetchNews = async () => {
     $('article').each((index, element) => {
       const title = $(element).text();
       const link = $(element).find('a').attr('href');
-      $('figure').each((index, element) => {
-        const image = $(element).find('img').attr('srcset');
-        console.log(`https://news.google.com${image}`);
-              newsItems.push({ title, link: `https://news.google.com${link}`, image: `https://news.google.com${image}` });
-      })
-
+      const image = $(element).find('img').attr('srcset');
+      // $('figure').each((index, element) => {
+      //   const image = $(element).find('img').attr('srcset');
+      //   console.log(`https://news.google.com${image}`);
+      // })
+      
+      newsItems.push({ title, link: `https://news.google.com${link}`, image: `${image}` });
     });
     const jsonData = JSON.stringify(newsItems, null, 2);
       fs.writeFile('output.json', jsonData, 'utf8', (err) => {
